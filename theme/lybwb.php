@@ -10,52 +10,55 @@
     <link rel="icon" href="<?php echo $_SERVER['base_disk_path'];?>favicon.ico" type="image/x-icon" />
     <link rel="shortcut icon" href="<?php echo $_SERVER['base_disk_path'];?>favicon.ico" type="image/x-icon" />
     <style type="text/css">
-        body{font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:16px;line-height:1em;color:#1E90FF;background:url("//www.qqzzz.net/www/images/bj.png")}
-        a{color:#1E90FF;cursor:pointer;text-decoration:none}
-        a:hover{color:#1E90FF}
-        .login ion-icon{vertical-align:bottom}
+        body{font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:14px;line-height:1em;color:#000;background-color:#000000;background-image:url("<?php echo getConfig('background')?getConfig('background'):($_SERVER['base_disk_path'].'background.jpg'); ?>")!important;
+			background-position: center bottom !important;
+			background-size: cover !important;
+			background-attachment: fixed !important;
+            background-repeat: no-repeat !important;
+        }
+        a{color:#FFFFFF;cursor:pointer;text-decoration:none}
+        ion-icon{font-size:15px;vertical-align:bottom}
+        a:hover{color:#05f7d5;}
         .changelanguage{position:absolute;right:5px;}
         .title{text-align:center;margin-top:1rem;letter-spacing:2px;margin-bottom:2rem}
-        .title a{color:#1E90FF;text-decoration:none}
-        .list-wrapper{width:80%;margin:0 auto 30px;position:relative;box-shadow:0 0 12px 0 rgb(100,149,237);border-radius:5px;}
+        .title a{color:#FFF;text-decoration:none}
+        .title a:hover{color: #05f7d5; }
+        .list-wrapper{width:80%;margin:0 auto 30px;position:relative;box-shadow:0 0 32px 0 rgba(0,0,0,0.3);border-radius:15px;}
         .list-container{position:relative;overflow:hidden;border-radius:15px;}
         .list-header-container{position:relative}
-        .list-header-container a.back-link{color:#1E90FF;display:inline-block;position:absolute;font-size:18px;margin:20px 10px;padding:10px 10px;vertical-align:middle;text-decoration:none}
-        .list-container,.list-header-container,.list-wrapper,a.back-link:hover,body{color:#1E90FF}
-        .list-header-container .table-header{margin:0;border:0 none;padding:30px 60px;text-align:left;font-weight:400;color:#1E90FF;background-color:rgba(245,245,245,0.6);word-break: break-all;word-wrap: break-word;}
-        .list-body-container{position:relative;left:0;overflow-x:hidden;overflow-y:auto;box-sizing:border-box;background:rgba(245,245,245,0.6)}
-        .more-disk{margin:0;border:0 none;padding-top:15px;text-align:left;font-weight:400;color:#1E90FF;background-color:rgba(245,245,245,0.6);word-break: break-all;word-wrap: break-word;}
-        .more-disk a{color:#1E90FF;cursor:pointer;display:inline-block; margin:0 15px 15px ;padding:5px;transition-duration: 0.4s;border-radius: 8px; background-color: white; border:2px solid rgba(30,144,255,0.6); }
-        .more-disk a:hover{ background-color: rgba(0,0,255,0.7); color: white; }
-        .button{display:inline-block;color:#1E90FF;cursor:pointer;padding:3px 7px;transition-duration: 0.4s;background-color:white;border:2px solid rgba(30,144,255,0.7); border-radius:3px;}
-        .button:hover{ background-color: rgba(0,0,255,0.7); color: white; }
+        .list-header-container a.back-link{color:#FFF;display:inline-block;position:absolute;font-size:16px;margin:20px 10px;padding:10px 10px;vertical-align:middle;text-decoration:none}
+         a.back-link:hover,body{color:#05f7d5}
+        .list-container,.list-header-container,.list-wrapper,body{color:#FFF}
+        .table-header{margin:0;border:0 none;padding:30px 60px;text-align:left;font-weight:400;color:#FFF;background-color:rgba(0,0,0,0.3);word-break: break-all;word-wrap: break-word;}
+        .list-body-container{position:relative;left:0;overflow-x:hidden;overflow-y:auto;box-sizing:border-box;background:rgba(0,0,0,0.3)}
+        .more-disk{margin:0;border:0 none;padding:30px 30px;text-align:left;font-weight:400;color:#FFF;background-color:rgba(0,0,0,0.3);white-space:nowrap;overflow:auto;}
+        .more-disk a{margin:0 10px;padding:5px;transition-duration: 0.4s;border-radius: 12px; background-color: rgba(0, 0, 0, 0.1); color: #FFF; border: 2px solid rgba(85,85,85,0.7); }
+        .more-disk a:hover{ background-color: rgba(0,0,0,0.4); color: #05f7d5; }
         .list-table{width:100%;padding:0 20px 20px 20px;border-spacing:0}
         .list-table tr{height:40px}
-        .list-table tr[data-to]:hover{background:rgba(100,149,237,0.7)}
-        .list-table tr:first-child{background:rgba(245,245,245,0)}
+        .list-table tr[data-to]:hover{background:rgba(0,0,0,0.3);color:#05f7d5;}
+        .list-table tr[data-to]:hover a[name~="filelist"]{color:#05f7d5}
+        .list-table tr:first-child{background:rgba(0,0,0,0)}
         .list-table td,.list-table th{padding:0 10px;text-align:left}
         .list-table .size,.list-table .updated_at{text-align:right}
-        .list-table .file ion-icon{font-size:15px;/*margin-right:5px;*/vertical-align:bottom}
-        .mask{position:absolute;left:0px;top:0px;width:100%;background-color:#1E90FF;filter:alpha(opacity=80);opacity:0.8;z-index:2;}
+        .mask{position:absolute;left:0px;top:0px;width:100%;background-color:#000;filter:alpha(opacity=50);opacity:0.5;z-index:2;}
 <?php if ($_SERVER['admin']) { ?>
-        .operate{display:inline-table;margin:0;list-style:none;}
-        .operate ion-icon{vertical-align:bottom}
-        .operate ul{position:absolute;display:none;background:white;border:0px #f7f7f7 solid;border-radius:5px;margin:0;padding:0 7px;color:#205D67;z-index:1;}
-        .operate:hover ul{position:absolute;display:block;}
-        .operate ul li{padding:7px;list-style:none;display:inline-block;float:left}
+        .operate{display:inline-table;margin:0;margin-right:5px;list-style:none}
+        .operate ul{position:absolute;display:none;background:rgba(121, 121, 121, 0.7);border:0px #000000 solid;border-radius:5px;margin:-7px 0 0 0;padding:0 7px;color:#205D67;z-index:1;}
+        .operate:hover ul{position:absolute;display:inline-table;}
+        .operate ul li{padding:7px;list-style:none;display:block;}
         .operate ul li ion-icon{vertical-align:bottom}
 <?php } ?>
-        .operatediv{position:absolute;border:1px #CCCCCC;background-color:white;z-index:2;}
-        .operatediv div{margin:18px}
+        .operatediv{position:absolute;border:1px #000000;background-color:rgba(0,0,0,0.3);z-index:2;}
+        .operatediv div{margin:16px}
         .operatediv_close{position:absolute;right:3px;top:3px;}
-        .readme{padding:8px;background-color:rgba(245,245,245,0.6);}
-        .readme .markdown-body{padding:20px;text-align:left;color:#1E90FF;font-size:16px}
+        .readme{padding:8px;background-color:rgba(0,0,0,0.3);}
+        .markdown-body{padding:20px;text-align:left}
         @media only screen and (max-width:480px){
-            .updated_at{display:none;}
             .title{margin-bottom:24px}
-            .list-wrapper{width:98%; margin-bottom:24px;}
+            .list-wrapper{width:95%; margin-bottom:24px;}
             .list-table {padding:8px}
-            .list-table td, .list-table th{padding:0 10px;text-align:left;white-space:nowrap;overflow:auto;max-width:80px}
+            .list-table td, .list-table th{white-space:nowrap;overflow:auto;max-width:80px}
         }
     </style>
 </head>
@@ -65,22 +68,22 @@
 <?php
     if (getConfig('admin')!='') if (!$_SERVER['admin']) {
         if (getConfig('adminloginpage')=='') { ?>
-        <a class="login button" onclick="login();"><ion-icon name="log-in"></ion-icon>登陆</a>
+        <a class="login" onclick="login();"><ion-icon name="log-in"></ion-icon><?php echo getconstStr('Login'); ?></a>
 <?php   }
     } else { ?>
-        <li class="operate button"><ion-icon name="construct"></ion-icon><?php echo getconstStr('Operate'); ?><ul>
+        <li class="operate"><ion-icon name="construct"></ion-icon><?php echo getconstStr('Operate'); ?><ul>
 <?php   if (isset($files['folder'])) { ?>
-            <li><a class="button" onclick="showdiv(event,'create','');"><ion-icon name="add-circle"></ion-icon><br>新<br>建</a></li>
-            <li><a class="button" onclick="showdiv(event,'encrypt','');"><ion-icon name="lock"></ion-icon><br>加<br>密</a></li>
-            <li><a class="button" href="?RefreshCache"><ion-icon name="refresh"></ion-icon><br>刷<br>新<br>缓<br>存</a></li>
+            <li><a onclick="showdiv(event,'create','');"><ion-icon name="add-circle"></ion-icon><?php echo getconstStr('Create'); ?></a></li>
+            <li><a onclick="showdiv(event,'encrypt','');"><ion-icon name="lock"></ion-icon><?php echo getconstStr('Encrypt'); ?></a></li>
+            <li><a href="?RefreshCache"><ion-icon name="refresh"></ion-icon><?php echo getconstStr('RefreshCache'); ?></a></li>
 <?php   } ?>
-            <li><a class="button" href="<?php echo $_GET['preview']?'?preview&':'?';?>setup"><ion-icon name="settings"></ion-icon><br>设<br>置</a></li>
-            <li><a class="button" onclick="logout()"><ion-icon name="log-out"></ion-icon><br>退<br>出</a></li>
+            <li><a href="<?php echo $_GET['preview']?'?preview&':'?';?>setup"><ion-icon name="settings"></ion-icon><?php echo getconstStr('Setup'); ?></a></li>
+            <li><a onclick="logout()"><ion-icon name="log-out"></ion-icon><?php echo getconstStr('Logout'); ?></a></li>
         </ul></li>
 <?php
     } ?>
         &nbsp;
-        <select class="changelanguage button" name="language" onchange="changelanguage(this.options[this.options.selectedIndex].value)">
+        <select class="changelanguage" name="language" onchange="changelanguage(this.options[this.options.selectedIndex].value)">
             <option value="">Language</option>
 <?php
     foreach ($constStr['languages'] as $key1 => $value1) { ?>
@@ -105,7 +108,8 @@
 <?php foreach ($disktags as $disk) {
         $diskname = getConfig('diskname', $disk);
         if ($diskname=='') $diskname = $disk;
-        echo '<a href="'.path_format($_SERVER['base_path'].'/'.$disk).'">'.$diskname.'</a>';
+        echo '                    <a href="'.path_format($_SERVER['base_path'].'/'.$disk).'"'.($_SERVER['disktag']==$disk?' now':'').'>'.$diskname.'</a>
+';
     } ?>
                 </div>
             </div>
@@ -139,8 +143,8 @@
     if ($_SERVER['is_guestup_path']&&!$_SERVER['admin']) { ?>
                 <div id="upload_div" style="margin:10px">
                 <center>
-                    <input class="button" id="upload_file" type="file" name="upload_filename">
-                    <input class="button" id="upload_submit" onclick="preup();" value="<?php echo getconstStr('Upload'); ?>" type="button">
+                    <input id="upload_file" type="file" name="upload_filename">
+                    <input id="upload_submit" onclick="preup();" value="<?php echo getconstStr('Upload'); ?>" type="button">
                 <center>
                 </div>
 <?php } else {
@@ -154,7 +158,7 @@
                 <div style="margin: 12px 4px 4px; text-align: center">
                     <div style="margin: 24px">
                         <textarea id="url" title="url" rows="1" style="width: 100%; margin-top: 2px;" readonly><?php echo str_replace('%2523', '%23', str_replace('%26amp%3B','&amp;',spurlencode(path_format($_SERVER['base_disk_path'] . '/' . $path), '/'))); ?></textarea>
-                        <a href="<?php echo path_format($_SERVER['base_disk_path'] . '/' . $path);//$files['@microsoft.graph.downloadUrl'] ?>"><ion-icon name="download" style="line-height: 18px;vertical-align: middle;"></ion-icon>&nbsp;<?php echo getconstStr('Download'); ?></a>
+                        <a href="<?php echo path_format($_SERVER['base_disk_path'] . '/' . $path);//$files['@microsoft.graph.downloadUrl'] ?>"><ion-icon name="download" style="line-height: 16px;vertical-align: middle;"></ion-icon>&nbsp;<?php echo getconstStr('Download'); ?></a>
                     </div>
                     <div style="margin: 24px">
 <?php               $ext = strtolower(substr($path, strrpos($path, '.') + 1));
@@ -210,9 +214,9 @@
                     $readme = false; ?>
                 <table class="list-table" id="list-table">
                     <tr id="tr0">
-                        <th class="file" onclick="sortby('a');"><?php echo getconstStr('File'); if ($_SERVER['USER']!='qcloud') { ?>&ensp;&ensp;&ensp;<button class="button" onclick="showthumbnails(this);"><?php echo getconstStr('ShowThumbnails'); ?></button><?php } ?></th>
-                        <th class="updated_at" width="25%" onclick="sortby('time');"><?php echo getconstStr('EditTime'); ?></th>
-                        <th class="size" width="15%" onclick="sortby('size');"><?php echo getconstStr('Size'); ?></th>
+                        <th class="file"><a onclick="sortby('a');"><?php echo getconstStr('File'); ?></a><?php if ($_SERVER['USER']!='qcloud') { ?>&nbsp;&nbsp;&nbsp;<button onclick="showthumbnails(this);"><?php echo getconstStr('ShowThumbnails'); ?></button><?php } ?><button onclick="CopyAllDownloadUrl();"><?php echo getconstStr('CopyAllDownloadUrl'); ?></button></th>
+                        <th class="updated_at" width="25%"><a onclick="sortby('time');"><?php echo getconstStr('EditTime'); ?></a></th>
+                        <th class="size" width="15%"><a onclick="sortby('size');"><?php echo getconstStr('Size'); ?></a></th>
                     </tr>
                     <!-- Dirs -->
 <?php               //echo json_encode($files['children'], JSON_PRETTY_PRINT);
@@ -223,18 +227,18 @@
                     <tr data-to id="tr<?php echo $filenum;?>">
                         <td class="file">
 <?php                       if ($_SERVER['admin']) { ?>
-                            <li class="operate"><ion-icon name="construct"></ion-icon><?php echo getconstStr('Operate'); ?>
+                            <li class="operate"><ion-icon name="construct"></ion-icon><a><?php echo getconstStr('Operate'); ?></a>
                             <ul>
-                                <li><a class="button" onclick="showdiv(event,'encrypt',<?php echo $filenum;?>);"><ion-icon name="lock"></ion-icon><br>加<br>密</a></li>
-                                <li><a class="button"  onclick="showdiv(event, 'rename',<?php echo $filenum;?>);"><ion-icon name="create"></ion-icon><br>重<br>命<br>名</a></li>
-                                <li><a class="button"  onclick="showdiv(event, 'move',<?php echo $filenum;?>);"><ion-icon name="move"></ion-icon><br>移<br>动</a></li>
-                                <li><a class="button"  onclick="showdiv(event, 'copy',<?php echo $filenum;?>);"><ion-icon name="copy"></ion-icon><br>复<br>制</a></li>
-                                <li><a class="button"  onclick="showdiv(event, 'delete',<?php echo $filenum;?>);"><ion-icon name="trash"></ion-icon><br>删<br>除</a></li>
+                                <li><a onclick="showdiv(event,'encrypt',<?php echo $filenum;?>);"><ion-icon name="lock"></ion-icon><?php echo getconstStr('Encrypt'); ?></a></li>
+                                <li><a onclick="showdiv(event, 'rename',<?php echo $filenum;?>);"><ion-icon name="create"></ion-icon><?php echo getconstStr('Rename'); ?></a></li>
+                                <li><a onclick="showdiv(event, 'move',<?php echo $filenum;?>);"><ion-icon name="move"></ion-icon><?php echo getconstStr('Move'); ?></a></li>
+                                <li><a onclick="showdiv(event, 'copy',<?php echo $filenum;?>);"><ion-icon name="copy"></ion-icon><?php echo getconstStr('Copy'); ?></a></li>
+                                <li><a onclick="showdiv(event, 'delete',<?php echo $filenum;?>);"><ion-icon name="trash"></ion-icon><?php echo getconstStr('Delete'); ?></a></li>
                             </ul>
-                            </li>&nbsp;&nbsp;&nbsp;
+                            </li>
 <?php                       } ?>
                             <ion-icon name="folder"></ion-icon>
-                            <a id="file_a<?php echo $filenum;?>" href="<?php echo path_format($_SERVER['base_disk_path'] . '/' . $path . '/' . encode_str_replace($file['name']) . '/'); ?>"><?php echo str_replace('&','&amp;', $file['name']);?></a>
+                            <a id="file_a<?php echo $filenum;?>" name="filelist" href="<?php echo path_format($_SERVER['base_disk_path'] . '/' . $path . '/' . encode_str_replace($file['name']) . '/'); ?>"><?php echo str_replace('&','&amp;', $file['name']);?></a>
                         </td>
                         <td class="updated_at" id="folder_time<?php echo $filenum;?>"><?php echo time_format($file['lastModifiedDateTime']); ?></td>
                         <td class="size" id="folder_size<?php echo $filenum;?>"><?php echo size_format($file['size']); ?></td>
@@ -256,14 +260,14 @@
                     <tr data-to id="tr<?php echo $filenum;?>">
                         <td class="file">
 <?php                           if ($_SERVER['admin']) { ?>
-                            <li class="operate"><ion-icon name="construct"></ion-icon><?php echo getconstStr('Operate'); ?>
+                            <li class="operate"><ion-icon name="construct"></ion-icon><a><?php echo getconstStr('Operate'); ?></a>
                             <ul>
                                 <li><a onclick="showdiv(event, 'rename',<?php echo $filenum;?>);"><ion-icon name="create"></ion-icon><?php echo getconstStr('Rename'); ?></a></li>
                                 <li><a onclick="showdiv(event, 'move',<?php echo $filenum;?>);"><ion-icon name="move"></ion-icon><?php echo getconstStr('Move'); ?></a></li>
                                 <li><a onclick="showdiv(event, 'copy',<?php echo $filenum;?>);"><ion-icon name="copy"></ion-icon><?php echo getconstStr('Copy'); ?></a></li>
                                 <li><a onclick="showdiv(event, 'delete',<?php echo $filenum;?>);"><ion-icon name="trash"></ion-icon><?php echo getconstStr('Delete'); ?></a></li>
                             </ul>
-                            </li>&nbsp;&nbsp;&nbsp;
+                            </li>
 <?php                           }
                                 $ext = strtolower(substr($file['name'], strrpos($file['name'], '.') + 1));
                                 if (in_array($ext, $exts['music'])) { ?>
@@ -288,7 +292,7 @@
                             <ion-icon name="document"></ion-icon>
 <?php                           } ?>
                             <a id="file_a<?php echo $filenum;?>" name="filelist" href="<?php echo path_format($_SERVER['base_disk_path'] . '/' . $path . '/' . encode_str_replace($file['name'])); ?>?preview" target=_blank><?php echo str_replace('&','&amp;', $file['name']); ?></a>
-                            <a href="<?php echo path_format($_SERVER['base_disk_path'] . '/' . $path . '/' . str_replace('&','&amp;', $file['name']));?>"><ion-icon name="download"></ion-icon></a>
+                            <a class="download" href="<?php echo path_format($_SERVER['base_disk_path'] . '/' . $path . '/' . str_replace('&','&amp;', $file['name']));?>"><ion-icon name="download"></ion-icon></a>
                         </td>
                         <td class="updated_at" id="file_time<?php echo $filenum;?>"><?php echo time_format($file['lastModifiedDateTime']); ?></td>
                         <td class="size" id="file_size<?php echo $filenum;?>"><?php echo size_format($file['size']); ?></td>
@@ -340,10 +344,10 @@
                         echo $prepagenext;
                     }
                     if ($_SERVER['admin']) { ?>
-                <div id="upload_div" style="margin:0 0 18px 0">
+                <div id="upload_div" style="margin:0 0 16px 0">
                 <center>
-                    <input class="button" id="upload_file" type="file" name="upload_filename" multiple="multiple">
-                    <input class="button" id="upload_submit" onclick="preup();" value="<?php echo getconstStr('Upload'); ?>" type="button">
+                    <input id="upload_file" type="file" name="upload_filename" multiple="multiple">
+                    <input id="upload_submit" onclick="preup();" value="<?php echo getconstStr('Upload'); ?>" type="button">
                 </center>
                 </div>
 <?php               }
@@ -362,7 +366,7 @@
             <div class="list-header-container">
                 <div class="readme">
                     <!--<svg class="octicon octicon-book" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M3 5h4v1H3V5zm0 3h4V7H3v1zm0 2h4V9H3v1zm11-5h-4v1h4V5zm0 2h-4v1h4V7zm0 2h-4v1h4V9zm2-6v9c0 .55-.45 1-1 1H9.5l-1 1-1-1H2c-.55 0-1-.45-1-1V3c0-.55.45-1 1-1h5.5l1 1 1-1H15c.55 0 1 .45 1 1zm-8 .5L7.5 3H2v9h6V3.5zm7-.5H9.5l-.5.5V12h6V3z"></path></svg>
-                    <span style="line-height: 18px;vertical-align: top;">'.$head['name'].'</span>-->
+                    <span style="line-height: 16px;vertical-align: top;">'.$head['name'].'</span>-->
                     <div class="markdown-body" id="head">
                         <textarea id="head-md" style="display:none;">' . curl_request(fetch_files(spurlencode(path_format($path . '/' .$head['name']),'/'))['@microsoft.graph.downloadUrl'])['body'] . '
                         </textarea>
@@ -380,7 +384,7 @@
             <div class="list-header-container">
                 <div class="readme">
                     <!--<svg class="octicon octicon-book" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M3 5h4v1H3V5zm0 3h4V7H3v1zm0 2h4V9H3v1zm11-5h-4v1h4V5zm0 2h-4v1h4V7zm0 2h-4v1h4V9zm2-6v9c0 .55-.45 1-1 1H9.5l-1 1-1-1H2c-.55 0-1-.45-1-1V3c0-.55.45-1 1-1h5.5l1 1 1-1H15c.55 0 1 .45 1 1zm-8 .5L7.5 3H2v9h6V3.5zm7-.5H9.5l-.5.5V12h6V3z"></path></svg>
-                    <span style="line-height: 18px;vertical-align: top;">'.$readme['name'].'</span>-->
+                    <span style="line-height: 16px;vertical-align: top;">'.$readme['name'].'</span>-->
                     <div class="markdown-body" id="readme">
                         <textarea id="readme-md" style="display:none;">' . curl_request(fetch_files(spurlencode(path_format($path . '/' .$readme['name']),'/'))['@microsoft.graph.downloadUrl'])['body'] . '
                         </textarea>
@@ -441,7 +445,7 @@
                 <input id="encrypt_sid" name="encrypt_sid" type="hidden" value="">
                 <input id="encrypt_hidden" name="encrypt_folder" type="hidden" value="">
                 <input id="encrypt_input" name="encrypt_newpass" type="text" value="" placeholder="<?php echo getconstStr('InputPasswordUWant'); ?>">
-                <?php if (getConfig('passfile')!='') {?><input name="operate_action" type="submit" value="<?php echo getconstStr('encrypt'); ?>"><?php } else { ?><br><label><?php echo getconstStr('SetpassfileBfEncrypt'); ?></label><?php } ?>
+                <?php if (getConfig('passfile')!='') {?><input name="operate_action" type="submit" value="<?php echo getconstStr('Encrypt'); ?>"><?php } else { ?><br><label><?php echo getconstStr('SetpassfileBfEncrypt'); ?></label><?php } ?>
                 </form>
             </div>
         </div>
@@ -519,15 +523,43 @@
             <a onclick="operatediv_close('login')" class="operatediv_close"><?php echo getconstStr('Close'); ?></a>
 	        <center>
 	            <form action="<?php echo $_GET['preview']?'?preview&':'?';?>admin" method="post">
-		        <input class="button" id="login_input" name="password1" type="password" placeholder="<?php echo getconstStr('InputPassword'); ?>">
-		        <input class="button" type="submit" value="<?php echo getconstStr('Login'); ?>">
+		        <input id="login_input" name="password1" type="password" placeholder="<?php echo getconstStr('InputPassword'); ?>">
+		        <input type="submit" value="<?php echo getconstStr('Login'); ?>">
 	            </form>
             </center>
         </div>
 	</div>
 <?php   }
     } ?>
-    <div style="text-align:center;">OneManager by 逸笙 theme by 若离</div>
+<center>
+<body>
+    <span id="date1"></span>
+        <script >
+    function $(num1) {
+	return num1<10?"0"+num1:num1;
+}
+function setTime() {
+	var date = new Date();
+	var year = date.getFullYear();
+	var month = date.getMonth()+1;
+	var day = date.getDate();
+	var week = date.getDay();
+	console.log();
+	var hour = date.getHours();
+	var minute = date.getMinutes();
+	var second = date.getSeconds();
+	var time = year+"/"+$(month)+'/'+$(day)+" "+$(hour)+":"+$(minute)+":"+$(second);
+	document.getElementById("date1").innerHTML=time;
+}
+setTime();
+setInterval('setTime()',500);
+</script>
+</body>
+<?php
+$ip = ($_SERVER["HTTP_VIA"]) ? $_SERVER["HTTP_X_FORWARDED_FOR"] : $_SERVER["REMOTE_ADDR"];
+$ip = ($ip) ? $ip : $_SERVER["REMOTE_ADDR"];
+echo  'IPv4: ' ,$ip, "\n";
+?></center>
 </body>
 <?php if ($files) { ?>
 <?php if ($head||$readme) { ?><link rel="stylesheet" href="//unpkg.zhimg.com/github-markdown-css@3.0.1/github-markdown.css">
@@ -686,7 +718,6 @@
     }
 <?php   }
     } else { // view folder. 不预览，即浏览目录时?>
-    var sort=0;
     function showthumbnails(obj) {
         var files=document.getElementsByName('filelist');
         for ($i=0;$i<files.length;$i++) {
@@ -714,6 +745,19 @@
             } else console.log(xhr.status+'\n'+xhr.responseText);
         }
     }
+    function CopyAllDownloadUrl() {
+        var tmptextarea=document.createElement('textarea');
+        document.body.appendChild(tmptextarea);
+        tmptextarea.setAttribute('style','position:absolute;left:-100px;width:0px;height:0px;');
+        document.querySelectorAll('.download').forEach(function (e) {
+            tmptextarea.innerHTML+=e.href+"\r\n";
+        });
+        tmptextarea.select();
+        tmptextarea.setSelectionRange(0, tmptextarea.value.length);
+        document.execCommand("copy");
+        alert(tmptextarea.innerHTML);
+    }
+    var sort=0;
     function sortby(string) {
         if (string=='a') if (sort!=0) {
             for (i = 1; i <= <?php echo $filenum?$filenum:0;?>; i++) document.getElementById('tr'+i).parentNode.insertBefore(document.getElementById('tr'+i),document.getElementById('tr'+(i-1)).nextSibling);
@@ -864,7 +908,7 @@
                 return;
             }
             var xhr1 = new XMLHttpRequest();
-            xhr1.open("GET", '?action=upbigfile&upbigfilename='+ encodeURIComponent(file.name) +'&filesize='+ file.size +'&lastModified='+ file.lastModified);
+            xhr1.open("GET", '?action=upbigfile&upbigfilename='+ encodeURIComponent((file.webkitRelativePath||file.name)) +'&filesize='+ file.size +'&lastModified='+ file.lastModified);
             xhr1.setRequestHeader('x-requested-with','XMLHttpRequest');
             xhr1.send(null);
             xhr1.onload = function(e){
@@ -975,7 +1019,7 @@
                             if (response['size']>0) {
                                 // contain size, upload finish. 有size说明是最终返回，上传结束
                                 var xhr3 = new XMLHttpRequest();
-                                xhr3.open("GET", '?action=del_upload_cache&filename=.'+file.lastModified+ '_' +file.size+ '_' +encodeURIComponent(file.name)+'.tmp');
+                                xhr3.open("GET", '?action=del_upload_cache&filelastModified='+file.lastModified+'&filesize='+file.size+'&filename='+encodeURIComponent((file.webkitRelativePath||file.name)));
                                 xhr3.setRequestHeader('x-requested-with','XMLHttpRequest');
                                 xhr3.send(null);
                                 xhr3.onload = function(e){
@@ -984,7 +1028,7 @@
 <?php if (!$_SERVER['admin']) { ?>
                                 var filemd5 = spark.end();
                                 var xhr4 = new XMLHttpRequest();
-                                xhr4.open("GET", '?action=uploaded_rename&filename='+encodeURIComponent(file.name)+'&filemd5='+filemd5);
+                                xhr4.open("GET", '?action=uploaded_rename&filename='+encodeURIComponent((file.webkitRelativePath||file.name))+'&filemd5='+filemd5);
                                 xhr4.setRequestHeader('x-requested-with','XMLHttpRequest');
                                 xhr4.send(null);
                                 xhr4.onload = function(e){
@@ -1237,4 +1281,3 @@
 </script>
 <script src="//unpkg.zhimg.com/ionicons@4.4.4/dist/ionicons.js"></script>
 </html>
- 
