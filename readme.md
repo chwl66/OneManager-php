@@ -8,13 +8,27 @@ Demo: https://herooneindex.herokuapp.com/
 How to Install: Click the button [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/qkqpttgf/OneManager-php) to Deploy a new app, or create an app then deploy via connect to your github fork.  
 
 
+# Deploy to Glitch  
+Official: https://glitch.com/  
+Demo: https://onemanager.glitch.me/  
+
+How to Install: New Project -> Import form Github -> paste "https://github.com/qkqpttgf/OneManager-php", after done, Show -> In a New Window.  
+
+
 # Deploy to Tencent Serverless Cloud Function (SCF 腾讯无服务器云函数)  
 Official: https://cloud.tencent.com/product/scf  
 DEMO:  无  
+注意：SCF新增限制，环境变量整体最大4KB，所以最多添加4个盘。  
 
-How to Install:  无  
+How to Install:  
+1，进入函数服务，上方选择地区，然后点击新建。  
+2，输入函数名称，选择模板函数，在模糊搜索中输入onedrive，大小写随意，选择那个【获取onedrive信息.....】，点下一步，在代码界面不用动，直接点完成。  
+3，点击触发管理，创建触发器，触发方式改成API网关触发，底下勾选启用集成响应，提交。  
+4，在触发管理中可以看到一个 访问路径，访问它，开始安装。  
+
+（重点：勾选集成响应）  
   
-添加网盘时，SCF反应不过来，会添加失败，请不要删除，再添加一次相同的就可以了。  
+添加网盘时，SCF可能会反应不过来，不跳转到微软，导致添加失败，请不要删除这个盘，再添加一次相同标签的盘就可以了。  
 
 
 # Deploy to Virtual Private Server (VPS 或空间)  
@@ -32,7 +46,20 @@ How to Install:
     在浏览器中访问。  
 
 
-# Deploy to Aliyun Function Compute (FC 阿里函数计算)  
+# Deploy to Huawei cloud Function Graph (FG 华为云函数工作流)  
+Official: https://console.huaweicloud.com/functiongraph/  
+DEMO:  无  
+注意：FG中，环境变量整体大小为2KB，所以最多添加2个盘。  
+
+How to Install:  
+1，在函数列表，点右边创建函数  
+2，输入名称，选择运行时语言为PHP7.3，点上传ZIP文件，选择文件，然后点右边的创建函数（这里的ZIP文件不能直接用从Github上下载的ZIP文件，要将它解压后，去掉外层文件夹后，再压缩为ZIP。）  
+3，创建触发器：选API网关，安全认证选None，后端超时（毫秒）将5000改成30000，上面创建分组一下，其它的点点点  
+4，访问触发器给的url，开始安装  
+5，在触发器界面点触发器名称，跳到API网关管理，右边更多URL，可以添加自定义域名，自定义域名后发现还是要 xxxx.com/函数名 来访问，点上方的编辑，第1页不用改，点下一步，请求Path改成/，注意匹配模式是前缀匹配，Method为ANY，然后不用点下一步了，点立即完成，然后去发布生效  
+
+
+# Deploy to Aliyun Function Compute (FC 阿里云函数计算)  
 Official: https://fc.console.aliyun.com/  
 DEMO:  无  
 
@@ -43,6 +70,20 @@ How to Install:
 4，上传代码  
 5，触发器中点进去，找到配置自定义域名，点击前往，创建，路径中填 /* ，其它下拉选择。  
 6，访问你的域名，开始安装  
+
+
+# Deploy to Baidu Cloud Function Compute (CFC 百度云函数计算)  
+Official: https://console.bce.baidu.com/cfc/#/cfc/functions  
+DEMO:  无  
+自定义域名需要另外使用API网关，并备案。  
+
+How to Install:  
+1，在函数列表，点创建函数  
+2，创建方式改为空白函数，点下一步  
+3，输入名称，选择运行时为PHP7.2，点下一步  
+4，触发器：下拉选择HTTP触发器，URL路径填 /{filepath+} ，HTTP方法全选，身份验证：不验证，点提交  
+5，进入代码编辑页，编辑类型改上传函数ZIP包，选择文件（这里的ZIP文件不能直接用从Github上下载的ZIP文件，要将它解压后，去掉外层文件夹后，再压缩为ZIP。），开始上传  
+6，点击右边触发器，复制并访问提供的url，开始安装  
 
 
 # Features 特性  

@@ -23,11 +23,60 @@
     <meta name="description" content="<!--Description-->">
     <link rel="icon" href="<!--base_path-->favicon.ico" type="image/x-icon">
     <link rel="shortcut icon" href="<!--base_path-->favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kizx/onemoe-theme/onemoe.min.css" type="text/css" />
-<!--BackgroundStart-->
-    <style>body{background-repeat:no-repeat;background-size:cover;background-attachment:fixed;background-position-x:center;background-image:url("<!--BackgroundUrl-->")}</style>
-<!--BackgroundEnd-->
-	<script type="text/javascript">if(window.console&&window.console.log){console.log("%c Onemoe Theme %c https://github.com/kizx/onemoe-theme ","color: #fff; margin: 1em 0; padding: 5px 0; background: #673ab7;","margin: 1em 0; padding: 5px 0; background: #efefef;")}</script>
+    <style type="text/css">
+        body{font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:14px;line-height:1em;color:#000;background-color:#4e4ff5;<!--BackgroundStart-->background-repeat:no-repeat;background-size:cover;background-attachment:fixed;background-image:url("<!--BackgroundUrl-->");<!--BackgroundEnd-->}
+        a{color:#24292e;cursor:pointer;text-decoration:none}
+	    button{padding:5px 10px;color:#fff;background:#4e4ff5;border:0;border-radius:20px;}
+	    input[type="button"]{padding: 10px 20px;color: #fff;background: #4e4ff5;border: 0;font-size: 14px;border-radius: 20px;}
+        ion-icon{font-size:15px;vertical-align:bottom}
+        .changelanguage{position:absolute;right:5px;}
+        .title{text-align:center;margin-top:1rem;letter-spacing:2px;margin-bottom:2rem}
+        .title a{color:#fff;text-decoration:none}
+        .list-wrapper{width:80%;margin:0 auto 30px;position:relative;box-shadow:0 0 10px 0 rgb(255,255,255,0.5);border-radius:40px;}
+        .list-container{position:relative;overflow:hidden;border-radius:40px;}
+        .list-header-container{position:relative}
+        .list-header-container a.back-link{color:#000;display:inline-block;position:absolute;font-size:16px;margin:20px 10px;padding:10px 10px;vertical-align:middle;text-decoration:none}
+        .list-container,.list-header-container,.list-wrapper,a.back-link:hover,body{color:#24292e;}
+        .table-header{margin:0;border:0 none;padding:20px 20px 15px 30px;text-align:left;font-weight:400;font-size:14px;color:#999;background-color:rgba(255,255,255,1);word-break: break-all;word-wrap: break-word;}
+	.table-header a{color:#999;}
+	.list-body-container{position:relative;left:0;overflow-x:hidden;overflow-y:auto;box-sizing:border-box;background:rgba(255,255,255,1)}
+        .more-disk{margin:0;border:0 none;padding:15px;text-align:left;font-weight:400;color:#000;background-color:rgba(255,255,255,1);white-space:nowrap;overflow:auto;}
+        .more-disk a{display:inline-block;margin:0 5px;padding:15px;transition-duration: 0.4s;border-radius: 40px; background-color: #f2f2f4; color: black; }
+        .more-disk a:hover, .more-disk a[now]{ background-color: #4e4ff5; color: #fff; }
+        .list-table{width:100%;padding:0 20px 20px 20px;border-spacing:0}
+        .list-table tr{height:60px}
+        .list-table tr[data-to]:hover{background:#ff447e;color:white;}
+        .list-table tr[data-to]:hover a{color:white}
+        .list-table tr:first-child{color:#2526a7;}
+	    .list-table tr:first-child th a{color:#2526a7;}
+        .list-table td,.list-table th{padding:0 10px;text-align:left}
+        .list-table .size,.list-table .updated_at{text-align:right}
+        .updated_at{width:25%}
+        .size{width:15%}
+        .mask{position:absolute;left:0px;top:0px;width:100%;background-color:#000;filter:alpha(opacity=50);opacity:0.5;z-index:2;}
+<!--AdminStart-->
+        .operate{display:inline-table;margin:0;margin-right:5px;list-style:none}
+        .operate ul{position:absolute;display:none;background:#fffaaa;border:0px #f7f7f7 solid;border-radius:5px;margin:-7px 0 0 0;padding:0 7px;color:#205D67;z-index:1;}
+        .operate:hover ul{position:absolute;display:inline-table;}
+        .operate ul li{padding:7px;list-style:none;display:block;}
+        .list-table tr[data-to]:hover .operate ul li a{color:black}
+<!--AdminEnd-->
+        .operatediv{position:absolute;border:1px #CCCCCC;background-color:#FFFFCC;z-index:2;}
+        .operatediv div{margin:16px}
+        .operatediv_close{position:absolute;right:3px;top:3px;}
+        .readme{padding:8px;background-color:rgba(245,245,245,0.5);}
+        .markdown-body, .customfile{padding:20px;text-align:left}
+        @media only screen and (max-width:480px){
+<!--BackgroundMStart-->
+            body{background-repeat:no-repeat;background-size:cover;background-attachment:fixed;background-image:url("<!--BackgroundMUrl-->");}
+<!--BackgroundMEnd-->
+            .title{margin-bottom:24px}
+            .list-wrapper{width:95%; margin-bottom:24px;}
+            .list-table {padding:8px}
+            .list-table td, .list-table th{white-space:nowrap;overflow:auto;max-width:80px}
+            .size, .updated_at{display:none}
+        }
+    </style>
     <!--customCss-->
 </head>
 
@@ -104,19 +153,14 @@
     <div class="list-wrapper" id="list-div">
         <div class="list-container">
             <div class="list-header-container">
-<!--BackArrowStart-->
-                <a href="<!--BackArrowUrl-->" class="back-link">
-                    <ion-icon name="arrow-back"></ion-icon>
-                </a>
-<!--BackArrowEnd-->
-                <h3 class="table-header"><!--PathArrayStart--> / <a href="<!--PathArrayLink-->"><!--PathArrayName--></a><!--PathArrayEnd--></h3>
+                <h3 class="table-header"><a href="<!--base_path-->"><!--constStr@Home--></a><!--DiskPathArrayStart--> / <a href="<!--PathArrayLink-->"><!--PathArrayName--></a><!--DiskPathArrayEnd--></h3>
             </div>
             <div class="list-body-container">
 <!--EncryptedStart-->
                 <div style="padding:20px">
 	            <center>
 	                <form action="" method="post">
-		            <input name="password1" type="password" placeholder="<!--constStr@InputPassword-->">
+		            <input id="password1" name="password1" type="password" placeholder="<!--constStr@InputPassword-->">
 		            <input type="submit" value="<!--constStr@Submit-->">
 	                </form>
                 </center>
@@ -273,10 +317,10 @@
                 </div>
 <!--AdminEnd-->
 <!--IsFolderEnd-->
-<!--ListEnd-->
             </div>
         </div>
     </div>
+<!--ListEnd-->
 <!--ReadmemdStart-->
     <div class="list-wrapper" id="readme-div">
         <div class="list-container">
@@ -609,15 +653,13 @@
             strarry=str.split('.');
             ext=strarry[strarry.length-1].toLowerCase();
             if (images.indexOf(ext)>-1) {
+                var url=files[$i].href;
+                url=url.substr(0,url.length-8);
                 if (document.getElementById('originalpic').checked==true) {
-                    var url=files[$i].href;
-                    url=url.substr(0,url.length-8);
                     files[$i].parentNode.parentNode.innerHTML='<td colspan="3"><img src="'+url+'" alt="'+str+'" onload="if (this.offsetWidth>document.getElementById(\'list-div\').offsetWidth) this.style.width=\'100%\';"></td>';
                     $i--;
                 } else {
-                    var nurl=window.location.href;
-                    if (nurl.substr(-1)!="/") nurl+="/";
-                    var url=nurl+str+'?thumbnails';
+                    url+='?thumbnails';
                     get_thumbnails_url(url, str, files[$i]);
                 }
             }
@@ -961,12 +1003,14 @@
                             var response=JSON.parse(xhr.responseText);
                             if (response['size']>0) {
                                 // contain size, upload finish. 有size说明是最终返回，上传结束
-                                var xhr3 = new XMLHttpRequest();
-                                xhr3.open("GET", '?action=del_upload_cache&filelastModified='+file.lastModified+'&filesize='+file.size+'&filename='+filename);
-                                xhr3.setRequestHeader('x-requested-with','XMLHttpRequest');
-                                xhr3.send(null);
-                                xhr3.onload = function(e){
-                                    console.log(xhr3.responseText+','+xhr3.status);
+                                if (totalsize>10*1024*1024) {
+                                    var xhr3 = new XMLHttpRequest();
+                                    xhr3.open("GET", '?action=del_upload_cache&filelastModified='+file.lastModified+'&filesize='+file.size+'&filename='+filename);
+                                    xhr3.setRequestHeader('x-requested-with','XMLHttpRequest');
+                                    xhr3.send(null);
+                                    xhr3.onload = function(e){
+                                        console.log(xhr3.responseText+','+xhr3.status);
+                                    }
                                 }
                                 EndTime=new Date();
                                 MiddleStr = '<!--constStr@EndAt-->:'+EndTime.toLocaleString()+'<br>';
@@ -977,6 +1021,7 @@
                                 }
                                 document.getElementById('upfile_td1_'+tdnum).innerHTML='<div style="color:green"><a href="<!--base_disk_path--><!--Path-->'+(file.webkitRelativePath||response.name)+'?preview" id="upfile_a_'+tdnum+'" target="_blank">'+document.getElementById('upfile_td1_'+tdnum).innerHTML+'</a><br><a href="<!--base_disk_path--><!--Path-->'+(file.webkitRelativePath||response.name)+'" id="upfile_a1_'+tdnum+'"></a><!--constStr@UploadComplete--><button onclick="CopyAllDownloadUrl(\'#upfile_a1_'+tdnum+'\');" id="upfile_cpbt_'+tdnum+'" <!--AdminStart--> style="display:none"<!--AdminEnd--> ><!--constStr@CopyUrl--></button></div>';
                                 label.innerHTML=StartStr+MiddleStr;
+                                label.style.color='green';
                                 // uploadbuttonshow();
 <!--AdminStart-->
                                 response.name=file.webkitRelativePath||response.name;
@@ -1198,6 +1243,9 @@
         document.getElementById('login_input').focus();
     }
 <!--LoginEnd-->
+<!--EncryptedStart-->
+    document.getElementById('password1').focus();
+<!--EncryptedEnd-->
 </script>
 <script src="//unpkg.zhimg.com/ionicons@4.4.4/dist/ionicons.js"></script>
 <!--customScript-->
